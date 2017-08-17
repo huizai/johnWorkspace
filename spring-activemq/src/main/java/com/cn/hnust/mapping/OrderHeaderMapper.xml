@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.hnust.dao.OrderHeaderMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.hnust.bean.OrderHeader" >
+    <id column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="order_type_id" property="orderTypeId" jdbcType="VARCHAR" />
+    <result column="order_name" property="orderName" jdbcType="VARCHAR" />
+    <result column="external_id" property="externalId" jdbcType="VARCHAR" />
+    <result column="sales_channel_enum_id" property="salesChannelEnumId" jdbcType="VARCHAR" />
+    <result column="order_date" property="orderDate" jdbcType="VARCHAR" />
+    <result column="priority" property="priority" jdbcType="VARCHAR" />
+    <result column="entry_date" property="entryDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_id, order_type_id, order_name, external_id, sales_channel_enum_id, order_date, 
+    priority, entry_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_header
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order_header
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cn.hnust.bean.OrderHeader" >
+    insert into order_header (order_id, order_type_id, order_name, 
+      external_id, sales_channel_enum_id, order_date, 
+      priority, entry_date)
+    values (#{orderId,jdbcType=VARCHAR}, #{orderTypeId,jdbcType=VARCHAR}, #{orderName,jdbcType=VARCHAR}, 
+      #{externalId,jdbcType=VARCHAR}, #{salesChannelEnumId,jdbcType=VARCHAR}, #{orderDate,jdbcType=VARCHAR}, 
+      #{priority,jdbcType=VARCHAR}, #{entryDate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.hnust.bean.OrderHeader" >
+    insert into order_header
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderTypeId != null" >
+        order_type_id,
+      </if>
+      <if test="orderName != null" >
+        order_name,
+      </if>
+      <if test="externalId != null" >
+        external_id,
+      </if>
+      <if test="salesChannelEnumId != null" >
+        sales_channel_enum_id,
+      </if>
+      <if test="orderDate != null" >
+        order_date,
+      </if>
+      <if test="priority != null" >
+        priority,
+      </if>
+      <if test="entryDate != null" >
+        entry_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTypeId != null" >
+        #{orderTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderName != null" >
+        #{orderName,jdbcType=VARCHAR},
+      </if>
+      <if test="externalId != null" >
+        #{externalId,jdbcType=VARCHAR},
+      </if>
+      <if test="salesChannelEnumId != null" >
+        #{salesChannelEnumId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null" >
+        #{orderDate,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=VARCHAR},
+      </if>
+      <if test="entryDate != null" >
+        #{entryDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.hnust.bean.OrderHeader" >
+    update order_header
+    <set >
+      <if test="orderTypeId != null" >
+        order_type_id = #{orderTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderName != null" >
+        order_name = #{orderName,jdbcType=VARCHAR},
+      </if>
+      <if test="externalId != null" >
+        external_id = #{externalId,jdbcType=VARCHAR},
+      </if>
+      <if test="salesChannelEnumId != null" >
+        sales_channel_enum_id = #{salesChannelEnumId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null" >
+        order_date = #{orderDate,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        priority = #{priority,jdbcType=VARCHAR},
+      </if>
+      <if test="entryDate != null" >
+        entry_date = #{entryDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.hnust.bean.OrderHeader" >
+    update order_header
+    set order_type_id = #{orderTypeId,jdbcType=VARCHAR},
+      order_name = #{orderName,jdbcType=VARCHAR},
+      external_id = #{externalId,jdbcType=VARCHAR},
+      sales_channel_enum_id = #{salesChannelEnumId,jdbcType=VARCHAR},
+      order_date = #{orderDate,jdbcType=VARCHAR},
+      priority = #{priority,jdbcType=VARCHAR},
+      entry_date = #{entryDate,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+</mapper>
